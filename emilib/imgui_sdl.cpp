@@ -36,26 +36,26 @@ ImGui_SDL::ImGui_SDL(float width_points, float height_points, float pixels_per_p
 	io.DeltaTime = 1.0f / 60.0f; // Whatever – this will be properly measured later on.
 
 	// Keyboard mapping. ImGui will use those indices to peek into the io.KeyDown[] array.
-	io.KeyMap[ImGuiKey_Tab]        = SDL_SCANCODE_TAB;
-	io.KeyMap[ImGuiKey_LeftArrow]  = SDL_SCANCODE_LEFT;
-	io.KeyMap[ImGuiKey_RightArrow] = SDL_SCANCODE_RIGHT;
-	io.KeyMap[ImGuiKey_UpArrow]    = SDL_SCANCODE_UP;
-	io.KeyMap[ImGuiKey_DownArrow]  = SDL_SCANCODE_DOWN;
-	io.KeyMap[ImGuiKey_Home]       = SDL_SCANCODE_HOME;
-	io.KeyMap[ImGuiKey_End]        = SDL_SCANCODE_END;
-	io.KeyMap[ImGuiKey_Delete]     = SDL_SCANCODE_DELETE;
-	io.KeyMap[ImGuiKey_Backspace]  = SDL_SCANCODE_BACKSPACE;
-	io.KeyMap[ImGuiKey_Enter]      = SDL_SCANCODE_RETURN;
-	io.KeyMap[ImGuiKey_Escape]     = SDL_SCANCODE_ESCAPE;
-	io.KeyMap[ImGuiKey_A]          = SDLK_a;
-	io.KeyMap[ImGuiKey_C]          = SDLK_c;
-	io.KeyMap[ImGuiKey_V]          = SDLK_v;
-	io.KeyMap[ImGuiKey_X]          = SDLK_x;
-	io.KeyMap[ImGuiKey_Y]          = SDLK_y;
-	io.KeyMap[ImGuiKey_Z]          = SDLK_z;
+	// io.KeyMap[ImGuiKey_Tab]        = SDL_SCANCODE_TAB;
+	// io.KeyMap[ImGuiKey_LeftArrow]  = SDL_SCANCODE_LEFT;
+	// io.KeyMap[ImGuiKey_RightArrow] = SDL_SCANCODE_RIGHT;
+	// io.KeyMap[ImGuiKey_UpArrow]    = SDL_SCANCODE_UP;
+	// io.KeyMap[ImGuiKey_DownArrow]  = SDL_SCANCODE_DOWN;
+	// io.KeyMap[ImGuiKey_Home]       = SDL_SCANCODE_HOME;
+	// io.KeyMap[ImGuiKey_End]        = SDL_SCANCODE_END;
+	// io.KeyMap[ImGuiKey_Delete]     = SDL_SCANCODE_DELETE;
+	// io.KeyMap[ImGuiKey_Backspace]  = SDL_SCANCODE_BACKSPACE;
+	// io.KeyMap[ImGuiKey_Enter]      = SDL_SCANCODE_RETURN;
+	// io.KeyMap[ImGuiKey_Escape]     = SDL_SCANCODE_ESCAPE;
+	// io.KeyMap[ImGuiKey_A]          = SDLK_a;
+	// io.KeyMap[ImGuiKey_C]          = SDLK_c;
+	// io.KeyMap[ImGuiKey_V]          = SDLK_v;
+	// io.KeyMap[ImGuiKey_X]          = SDLK_x;
+	// io.KeyMap[ImGuiKey_Y]          = SDLK_y;
+	// io.KeyMap[ImGuiKey_Z]          = SDLK_z;
 
-	io.SetClipboardTextFn = set_clipboard_text_callback;
-	io.GetClipboardTextFn = get_clipboard_text_callback;
+	// io.SetClipboardTextFn = set_clipboard_text_callback;
+	// io.GetClipboardTextFn = get_clipboard_text_callback;
 }
 
 ImGui_SDL::~ImGui_SDL()
@@ -89,11 +89,11 @@ void ImGui_SDL::new_frame()
 		io.MousePos.x = -FLT_MAX;
 		io.MousePos.y = -FLT_MAX;
 
-		memset(io.KeysDown, 0, sizeof(io.KeysDown));
-		io.KeyShift = false;
-		io.KeyCtrl  = false;
-		io.KeyAlt   = false;
-		io.KeySuper = false;
+		// memset(io.KeysDown, 0, sizeof(io.KeysDown));
+		// io.KeyShift = false;
+		// io.KeyCtrl  = false;
+		// io.KeyAlt   = false;
+		// io.KeySuper = false;
 	}
 
 	// Hide OS mouse cursor if ImGui is drawing it
@@ -115,14 +115,14 @@ void ImGui_SDL::on_event(const SDL_Event& event)
 	if (!interactive()) { return; }
 
 	ImGuiIO& io = ImGui::GetIO();
-	auto num_imgui_keys = sizeof(io.KeysDown) / sizeof(io.KeysDown[0]);
+	auto num_imgui_keys = 1;//sizeof(io.KeysDown) / sizeof(io.KeysDown[0]);
 
 	switch (event.type)
 	{
 		case SDL_KEYDOWN: case SDL_KEYUP: {
 			int key = event.key.keysym.sym & ~SDLK_SCANCODE_MASK;
 			if (key < num_imgui_keys) {
-				io.KeysDown[key] = (event.type == SDL_KEYDOWN);
+				//io.KeysDown[key] = (event.type == SDL_KEYDOWN);
 			}
 			io.KeyShift = ((SDL_GetModState() & KMOD_SHIFT) != 0);
 			io.KeyCtrl  = ((SDL_GetModState() & KMOD_CTRL)  != 0);
